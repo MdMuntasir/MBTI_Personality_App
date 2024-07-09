@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mbti_app/login_screen.dart';
 import 'package:mbti_app/personalityPage.dart';
 import 'package:mbti_app/signup.dart';
@@ -9,6 +10,10 @@ import 'package:mbti_app/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
+
   await Firebase.initializeApp(
       options: const FirebaseOptions(
           apiKey: "AIzaSyDBW7FTGxv9k0fK8thvo54ITMIDh1UaBsE",
@@ -16,7 +21,6 @@ void main() async {
           messagingSenderId: "690493485282",
           projectId: "mbti-softengen"));
   User? user = FirebaseAuth.instance.currentUser;
-  log("Current user: $user");
   runApp(MyApp(user: user));
 }
 
